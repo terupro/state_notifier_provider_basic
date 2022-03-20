@@ -1,4 +1,4 @@
-# state_notifier_provider
+# state_notifier_provider_counter
 
 A new Flutter project.
 
