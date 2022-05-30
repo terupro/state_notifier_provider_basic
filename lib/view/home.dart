@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// <int>の部分に操作したいEntityを指定する
+// <int>を操作する
 class CounterNotifier extends StateNotifier<int> {
   // 初期値
   CounterNotifier() : super(0);
@@ -22,9 +22,9 @@ class Home extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // 「counterProvider」の値
-    final _counterProvider = ref.watch(counterProvider);
+    final counterState = ref.watch(counterProvider);
     // 「counterProvider」の操作
-    final _counterNotifier = ref.watch(counterProvider.notifier);
+    final counterNotifier = ref.watch(counterProvider.notifier);
     return Scaffold(
       appBar: AppBar(
         title: const Text('StateNotifierProvider'),
@@ -36,7 +36,7 @@ class Home extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              _counterProvider.toString(),
+              counterState.toString(),
               style: const TextStyle(fontSize: 80),
             ),
             Row(
@@ -45,7 +45,7 @@ class Home extends ConsumerWidget {
                 IconButton(
                   onPressed: () {
                     // プラスする
-                    _counterNotifier.plus();
+                    counterNotifier.plus();
                   },
                   icon: const Icon(Icons.add),
                   iconSize: 30,
@@ -54,7 +54,7 @@ class Home extends ConsumerWidget {
                 IconButton(
                   onPressed: () {
                     // マイナスする
-                    _counterNotifier.minus();
+                    counterNotifier.minus();
                   },
                   icon: const Icon(Icons.remove),
                   iconSize: 30,
